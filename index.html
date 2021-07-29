@@ -1,0 +1,202 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mental Motosport - Token Transfers Demo</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.1/css/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" type="text/css" />
+  </head>
+
+  <body>
+    <main class="container-fluid">
+      <section>
+        <h3 class="card-title">
+          Status
+        </h3>
+
+        <div class="row">
+          <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+            <p class="info-text alert alert-primary">
+              Network: <span id="network"></span>
+            </p>
+          </div>
+
+          <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+            <p class="info-text alert alert-secondary">
+              ChainId: <span id="chainId"></span>
+            </p>
+          </div>
+
+          <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+            <p class="info-text alert alert-success">
+              Accounts: <span id="accounts"></span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="row d-flex justify-content-center">
+          <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">
+                  Basic Actions
+                </h4>
+
+                <button
+                  class="btn btn-primary btn-lg btn-block mb-3"
+                  id="connectButton"
+                  disabled
+                >
+                  Connect
+                </button>
+
+              </div>
+            </div>
+          </div>
+    
+          <div
+          class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12 d-flex align-items-stretch"
+        >
+          <div class="card full-width">
+            <div class="card-body">
+              <h4>
+                Grant access to MasterRelay
+              </h4>
+              <div>
+                <div class="mb-3">
+                  <label for="tranferAmount" class="form-label">Amount</label>
+                  <input type="text" class="form-control" id="tranferAmount">
+                </div>
+                <button
+                class="btn btn-primary btn-lg btn-block mb-3"
+                id="signTypedDataV3"
+                disabled>
+                Grant
+                </button>
+              </div>
+             
+
+              <p class="info-text alert alert-warning">
+                Result:
+                <span id="signTypedDataV3Result"></span>
+              </p>
+              <h4>Debugging information</h4>
+              <div class="mb-3">
+                <label for="feeTranferAmount" class="form-label">Transfer Fee</label>
+                <input type="text" class="form-control" id="feeTranferAmount" disabled>
+              </div>
+              <div class="mb-3">
+                <label for="nonceTranferAmount" class="form-label">Nonce</label>
+                <input type="text" class="form-control" id="nonceTranferAmount" disabled>
+              </div>
+              <div class="mb-3">
+                <label for="deadlineTranferAmount" class="form-label">Deadline</label>
+                <input type="text" class="form-control" id="deadlineTranferAmount" disabled>
+              </div>
+              <button
+                class="btn btn-primary btn-lg btn-block mb-3"
+                id="signTypedDataV3Verify"
+                disabled
+              >
+                Verify
+              </button>
+
+              <p class="info-text alert alert-warning">
+                Recovery result:
+                <span id="signTypedDataV3VerifyResult"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12 d-flex align-items-stretch"
+        >
+
+        <div class="card full-width">
+          <div class="card-body">
+            <h4>
+              Create Request
+            </h4>
+            <div>
+              <div class="mb-3">
+                <label for="recipientRelay" class="form-label">Recipient</label>
+                <input type="text" class="form-control" id="recipientRelay">
+              </div>
+              <div class="mb-3">
+                <label for="tranferAmountRelay" class="form-label">Amount</label>
+                <input type="text" class="form-control" id="tranferAmountRelay" disabled>
+              </div>
+              <button
+              class="btn btn-primary btn-lg btn-block mb-3"
+              id="signTypedDataV3Transfer"
+              disabled>
+              Confirm
+              </button>
+              <div id="transferTx" style="display:none">
+                <a href="" id="linkTransfeTx" target="_blank"></a>
+                <p>
+                  Please, update page (f5) for next transaction
+                </p>
+              </div>
+              <button
+              class="btn btn-primary btn-lg btn-block mb-3"
+              id="broadcastRequest"
+              disabled
+            >
+              Broadcast request
+            </button>
+            </div>
+           
+
+            <p class="info-text alert alert-warning">
+              Result:
+              <span id="signTypedDataV3ResultTransfer"></span>
+            </p>
+            <h4>Debugging information</h4>
+            <div class="mb-3">
+              <label for="feeRelayAmount" class="form-label">Transfer Fee</label>
+              <input type="text" class="form-control" id="feeRelayAmount" disabled>
+            </div>
+            <div class="mb-3">
+              <label for="nonceRelayAmount" class="form-label">Nonce</label>
+              <input type="text" class="form-control" id="nonceRelayAmount" disabled>
+            </div>
+            <div class="mb-3">
+              <label for="deadlineRelayAmount" class="form-label">Deadline</label>
+              <input type="text" class="form-control" id="deadlineRelayAmount" disabled>
+            </div>
+            <button
+              class="btn btn-primary btn-lg btn-block mb-3"
+              id="signTypedDataV3VerifyTransfer"
+              disabled
+            >
+              Verify
+            </button>
+
+            <p class="info-text alert alert-warning">
+              Recovery result:
+              <span id="signTypedDataV3VerifyResultTransfer"></span>
+            </p>
+          </div>
+        </div>
+        </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="bundle.js" defer></script>
+  </body>
+</html>
